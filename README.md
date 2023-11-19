@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# React Take Home Test
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -51,4 +51,5 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 2. The POSTCODE will be saved in the SearchHistory component ( you can click on it to see crimes or delete it )
 3. When you click the Search button you will get a table with crimes , filtered by [crime-category]
 4. Use the dropdown to select different crime-category and re-render the map and the table data.
+5. Added some tests for components.
 
