@@ -1,7 +1,7 @@
 import React, { useRef, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-// @ts-ignore
+
 const SearchBar = ({
   addSearchHistory,
 }: {
