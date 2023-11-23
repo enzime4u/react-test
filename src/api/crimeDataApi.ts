@@ -1,9 +1,7 @@
 const CRIME_DATA_API_BASE_URL =
   "https://data.police.uk/api/crimes-street/all-crime?";
 
-interface CrimeData {
-  // Define the structure of crime data based on the API response
-  // Replace any with actual data types
+export interface CrimeData {
   id: string;
   category: string;
   location: {

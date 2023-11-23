@@ -1,7 +1,7 @@
 import React from "react";
 import "./CrimeTable.css";
 import { DataGrid } from "@mui/x-data-grid";
-import { Link } from "react-router-dom";
+import LoadingSkeleton from "../LoadingSkeleton/LoadingSkeleton";
 
 type CrimeTableProps = {
   postcode: string;
@@ -18,12 +18,13 @@ const CrimeTable: React.FC<CrimeTableProps> = ({
   categorySelected,
   setCategorySelected,
 }) => {
+  
   return (
     <div className="data-view mt-10 flex">
       <h2 className="mb-5 text-2xl font-extrabold">Data View</h2>
       <label htmlFor="category-select">Choose a crime category</label>
       <select
-        className="ml-5 rounded-md border-2 border-gray-500 outline-2"
+        className="ml-5 rounded-md border-2 border-gray-500 outline-2 mb-5"
         name="crime-category"
         id="category-select"
         value={categorySelected}
@@ -35,7 +36,9 @@ const CrimeTable: React.FC<CrimeTableProps> = ({
           </option>
         ))}
       </select>
-      {postcode ? (
+      {!selectedCrimeData.length ? (
+        <LoadingSkeleton />
+      ) : postcode ? (
         <DataGrid
           autoHeight
           initialState={{
@@ -43,7 +46,7 @@ const CrimeTable: React.FC<CrimeTableProps> = ({
           }}
           pageSizeOptions={[5, 10, 20]}
           rows={selectedCrimeData.filter(
-            (item) => item.category === categorySelected,
+            (item) => item.category === categorySelected
           )}
           columns={[
             {
