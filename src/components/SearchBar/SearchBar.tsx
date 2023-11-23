@@ -1,11 +1,12 @@
 import React, { useRef, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-
 const SearchBar = ({
   addSearchHistory,
+  searchHistory,
 }: {
   addSearchHistory: (postcode: string) => void;
+  searchHistory: string[];
 }) => {
   const input = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
@@ -13,8 +14,18 @@ const SearchBar = ({
 
   const handleClick = useCallback(() => {
     if (input.current) {
-      addSearchHistory(input.current.value);
-      navigate("/data?postcode=" + input.current.value, { replace: true });
+      const postcodes = input.current.value
+        .split(",")
+        .map((code) => code.trim());
+      postcodes.forEach((postcode) => {
+        if (!postcode || searchHistory.includes(postcode.toUpperCase())) {
+          return;
+        }
+        addSearchHistory(postcode);
+      });
+
+      // problem here !!!! solved
+      navigate("/data?postcode=" + postcodes.join(","), { replace: true });
     }
   }, [addSearchHistory, navigate]);
 
