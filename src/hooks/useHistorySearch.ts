@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 
 
@@ -24,19 +24,19 @@ const useHistoricSearch = () => {
   }, [searchHistory]);
 
 
-  const addSearchHistory = (postcode: string) => {
+  const addSearchHistory = useCallback((postcode: string) => {
     if (searchHistory.includes(postcode)) {
       return;
     }
     setSearchHistory((prevHistory) => [...prevHistory, postcode.toUpperCase()]);
-  };
+  }, [searchHistory]);
 
 
-  const removeSearchHistory = (postcode: string) => {
+  const removeSearchHistory = useCallback((postcode: string) => {
     setSearchHistory((prevHistory) =>
       prevHistory.filter((code) => code !== postcode),
     );
-  };
+  }, []);
 
   return { searchHistory, addSearchHistory, removeSearchHistory };
 };
