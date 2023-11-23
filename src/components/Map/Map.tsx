@@ -8,7 +8,11 @@ interface MapProps {
   categorySelected: string; // Replace any with actual data type
 }
 
-const Map: React.FC<MapProps> = ({ selectedCrimeData, categorySelected, postcode }) => {
+const Map: React.FC<MapProps> = ({
+  selectedCrimeData,
+  categorySelected,
+  postcode,
+}) => {
   const mapRef = useRef<L.Map | null>(null);
 
   useEffect(() => {
@@ -37,7 +41,13 @@ const Map: React.FC<MapProps> = ({ selectedCrimeData, categorySelected, postcode
     selectedCrimeData.forEach((crime) => {
       if (crime.category === categorySelected) {
         const { latitude, longitude } = crime.location;
-        L.marker([latitude, longitude], { icon: L.icon({ iconUrl: "https://i.pinimg.com/originals/0f/61/ba/0f61ba72e0e12ba59d30a50295964871.png", iconSize: [40, 40] }) })
+        L.marker([latitude, longitude], {
+          icon: L.icon({
+            iconUrl:
+              "https://i.pinimg.com/originals/0f/61/ba/0f61ba72e0e12ba59d30a50295964871.png",
+            iconSize: [40, 40],
+          }),
+        })
           .addTo(map)
           .bindPopup(
             // this shown general postcode ( is not crime specific)
@@ -61,7 +71,17 @@ const Map: React.FC<MapProps> = ({ selectedCrimeData, categorySelected, postcode
     }
   }, [selectedCrimeData, categorySelected, postcode]);
 
-  return <div style={{ width: "600px", height: "500px", marginTop: "20px", marginBottom: "20px" }} id="map"></div>;
+  return (
+    <div
+      style={{
+        width: "700px",
+        height: "500px",
+        marginTop: "20px",
+        marginBottom: "20px",
+      }}
+      id="map"
+    ></div>
+  );
 };
 
 export default Map;
