@@ -17,15 +17,15 @@ const SearchHistory = ({
         navigate("/data?postcode=" + postcode, { replace: true });
       }
     },
-    [navigate],
+    [navigate]
   );
 
   return (
     <div className="historic-search mt-5">
       <h2>Search History</h2>
       <ul className="border">
-        {searchHistory?.map((postcode: string) => (
-          <li className="border p-2" key={postcode}>
+        {searchHistory?.map((postcode: string, i: number) => (
+          <li className="border p-2" key={i}>
             <Chip
               label={postcode}
               variant="outlined"
